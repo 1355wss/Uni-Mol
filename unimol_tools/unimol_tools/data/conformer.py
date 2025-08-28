@@ -99,7 +99,7 @@ class ConformerGen(object):
         self.dictionary = Dictionary.load(os.path.join(WEIGHT_DIR, self.dict_name))
         self.dictionary.add_symbol("[MASK]", is_special=True)
         if os.name == 'posix':
-            self.multi_process = params.get('multi_process', True)
+            self.multi_process = params.get('multi_process', False)
         else:
             self.multi_process = params.get('multi_process', False)
             if self.multi_process:
@@ -228,8 +228,8 @@ def inner_smi2coords(smi, seed=42, mode='fast', remove_hs=True, return_mol=False
     :return: A tuple containing the list of atom symbols and their corresponding 3D coordinates.
     :raises AssertionError: If no atoms are present in the molecule or if the coordinates do not align with the atom count.
     '''
-    # if '*' in smi:
-    #     smi = smi.replace("*","[H]")
+    if '*' in smi:
+        smi = smi.replace("*","[H]")
     mol = Chem.MolFromSmiles(smi)
     mol = AllChem.AddHs(mol)
     atoms = [atom.GetSymbol() for atom in mol.GetAtoms()]
