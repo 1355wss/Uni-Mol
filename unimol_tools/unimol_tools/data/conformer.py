@@ -99,7 +99,7 @@ class ConformerGen(object):
         self.dictionary = Dictionary.load(os.path.join(WEIGHT_DIR, self.dict_name))
         self.dictionary.add_symbol("[MASK]", is_special=True)
         if os.name == 'posix':
-            self.multi_process = params.get('multi_process', True)
+            self.multi_process = params.get('multi_process', False)
         else:
             self.multi_process = params.get('multi_process', False)
             if self.multi_process:
