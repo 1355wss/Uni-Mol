@@ -1,5 +1,7 @@
 import os
 
+os.environ["UNIMOL_WEIGHT_DIR"] = "/kaggle/weights"
+
 from ..utils import logger
 
 try:
@@ -11,7 +13,6 @@ except:
         raise ImportError(
             'huggingface_hub is not installed. If weights are not avaliable, please install it by running: pip install huggingface_hub. Otherwise, please download the weights manually from https://huggingface.co/dptech/Uni-Mol-Models'
         )
-
 
 WEIGHT_DIR = os.environ.get(
     'UNIMOL_WEIGHT_DIR', os.path.dirname(os.path.abspath(__file__))
@@ -32,7 +33,7 @@ def log_weights_dir():
         logger.info(f'Weights will be downloaded to default directory: {WEIGHT_DIR}')
 
 
-def weight_download(pretrain, save_path, local_dir_use_symlinks=True):
+def weight_download(pretrain, save_path=WEIGHT_DIR, local_dir_use_symlinks=True):
     """
     Downloads the specified pretrained model weights.
 
@@ -56,7 +57,7 @@ def weight_download(pretrain, save_path, local_dir_use_symlinks=True):
     )
 
 
-def weight_download_v2(pretrain, save_path, local_dir_use_symlinks=True):
+def weight_download_v2(pretrain, save_path=WEIGHT_DIR, local_dir_use_symlinks=True):
     """
     Downloads the specified pretrained model weights.
 
