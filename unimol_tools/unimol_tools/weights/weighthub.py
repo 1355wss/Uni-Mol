@@ -1,6 +1,6 @@
 import os
 
-os.environ["UNIMOL_WEIGHT_DIR"] = "/kaggle/weights"
+os.environ["UNIMOL_WEIGHT_DIR"] = "/kaggle/input/weights"
 
 from ..utils import logger
 
