@@ -228,8 +228,8 @@ def inner_smi2coords(smi, seed=42, mode='fast', remove_hs=True, return_mol=False
     :return: A tuple containing the list of atom symbols and their corresponding 3D coordinates.
     :raises AssertionError: If no atoms are present in the molecule or if the coordinates do not align with the atom count.
     '''
-    # if '*' in smi:
-    #     smi = smi.replace("*","[H]")
+    if '*' in smi:
+        smi = smi.replace("*","H")
     mol = Chem.MolFromSmiles(smi)
     mol = AllChem.AddHs(mol)
     atoms = [atom.GetSymbol() for atom in mol.GetAtoms()]
